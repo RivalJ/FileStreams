@@ -1,17 +1,14 @@
 public class Product {
 
-    private final String ID;
-    private String name;
-    private String description;
+    private final FixedLengthString ID;
+    private FixedLengthString name;
+    private FixedLengthString description;
     private double price;
 
-    public Product(String _IDNum){
-        this.ID = _IDNum;
-    }
-    public Product(String _IDNum, String _firstName, String _lastName, double price){
-        this.ID = _IDNum;
-        this.name = _firstName;
-        this.description = _lastName;
+    public Product(String _IDNum, String _name, String _desc, double price){
+        this.ID = new FixedLengthString(_IDNum, 6, FixedLengthString.IS_FINAL);
+        this.name = new FixedLengthString(_name, 35);
+        this.description = new FixedLengthString(_desc, 75);
         this.price = price;
     }
 
@@ -22,9 +19,9 @@ public class Product {
      */
     public String ToString(){
         return "Person{"+
-                "IDNum = " + ID + " \' " +
-                "name = " + name + " \' " +
-                "description = " + description + " \' " +
+                "IDNum = " + ID.GetRaw() + " \' " +
+                "name = " + name.GetRaw() + " \' " +
+                "description = " + description.GetRaw() + " \' " +
                 "price = " + price + " \' " +
                 "}";
     }
@@ -35,26 +32,11 @@ public class Product {
      *  as a CSV data string
      */
     public String ToCSVDataString(){
-        return ID + ", " + name + ", " + description + ", " + price;
+        return ID.GetRaw() + ", " + name.GetRaw() + ", " + description.GetRaw() + ", " + price;
     }
 
 
     //setters
-    /**
-     * FOR ALL SETTERS BELOW
-     * there is comment below the following methods that tells you when this section ends
-     * each setter takes in Param X as input and sets the given object variable to X,
-     * see the example below
-     *
-     * @param _name
-     * sets the name variable of this class to the same value as _name
-     */
-    public void SetName(String _name){
-        this.name = _name;
-    }
-    public void SetDescription(String _description){
-        this.description = _description;
-    }
     public void SetPrice(Double _price){
         this.price = _price;
     }
@@ -62,24 +44,9 @@ public class Product {
 
 
     //getters
-    /**
-     * FOR ALL GETTERS BELOW
-     * there is comment below the following methods that tells you when this section ends
-     * each getter returns the value of the variable by the same name
-     * see example below
-     *
-     * @return IDNum
-     * returns the value of IDNum
-     */
-    public String GetIDNum(){
-        return ID;
-    }
-    public String GetName(){
-        return name;
-    }
-    public String GetDescription(){
-        return description;
-    }
+    public FixedLengthString GetID(){return ID;}
+    public FixedLengthString GetName(){return name;}
+    public FixedLengthString GetDescription(){return description;}
     public double GetPrice(){
         return price;
     }
