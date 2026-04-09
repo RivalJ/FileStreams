@@ -24,7 +24,7 @@ public class Product {
      *  as a string
      */
     public String ToString(){
-        return "Person{"+
+        return "Product{"+
                 "IDNum = " + ID.GetRaw() + " \' " +
                 "name = " + name.GetRaw() + " \' " +
                 "description = " + description.GetRaw() + " \' " +
