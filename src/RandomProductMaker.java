@@ -5,16 +5,29 @@ import javax.swing.*;
 import java.awt.*;
 
 public class RandomProductMaker extends JFrame {
-    JPanel productInputFields, footer;
+    JPanel productInputFields, footer, center;
     JTextField productID, productName, productPrice, productCnt;
     JTextArea productDescription;
     public RandomProductMaker(){
         super("Random Objects.Product Maker");
-        super.setSize(500, 500);
+        super.setSize(525, 300);
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        super.setLocationRelativeTo(null);
+
+        center = new JPanel();
+        center.setLayout(new BorderLayout());
+        center.setBorder(BorderFactory.createEmptyBorder(10, 10, 20, 10));
+
         SetupProductInputFields();
         SetupFooter();
 
+        super.add(center, BorderLayout.CENTER);
+
+        JButton quitButton = new JButton("Quit");
+        quitButton.addActionListener(e -> {
+            System.exit(0);
+        });
+        super.add(quitButton, BorderLayout.SOUTH);
 
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
@@ -43,16 +56,18 @@ public class RandomProductMaker extends JFrame {
         productInputFields.add(productDescription);
         productInputFields.add(productPrice);
 
-        super.add(productInputFields, BorderLayout.CENTER);
+        center.add(productInputFields, BorderLayout.CENTER);
     }
     private void SetupFooter(){
         footer = new JPanel();
 
         productCnt = new JTextField(10);
+        productCnt.setText("0");
+        productCnt.setBorder(BorderFactory.createTitledBorder("Product Count"));
         productCnt.setEditable(false);
 
 
-        JButton addButton = new JButton("Add Objects.Product");
+        JButton addButton = new JButton("Add Product");
         addButton.addActionListener(e -> {
             OnAddButtonClick();
         });
@@ -60,7 +75,7 @@ public class RandomProductMaker extends JFrame {
 
         footer.add(productCnt);
 
-        super.add(footer, BorderLayout.SOUTH);
+        center.add(footer, BorderLayout.SOUTH);
     }
 
     private void OnAddButtonClick(){
@@ -93,6 +108,10 @@ public class RandomProductMaker extends JFrame {
                 );
                 ProductFileSaver.WriteProductToFile(p);
                 productCnt.setText(Integer.toString(Integer.parseInt(productCnt.getText()) + 1));
+                productID.setText("");
+                productName.setText("");
+                productDescription.setText("");
+                productPrice.setText("");
             }
         }
     }
