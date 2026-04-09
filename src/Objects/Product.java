@@ -7,10 +7,14 @@ public class Product {
     private FixedLengthString description;
     private double price;
 
+    public static final int ID_LENGTH = 6;
+    public static final int NAME_LENGTH = 35;
+    public static final int DESCRIPTION_LENGTH = 75;
+
     public Product(String _IDNum, String _name, String _desc, double price){
-        this.ID = new FixedLengthString(_IDNum, 6, FixedLengthString.IS_FINAL);
-        this.name = new FixedLengthString(_name, 35);
-        this.description = new FixedLengthString(_desc, 75);
+        this.ID = new FixedLengthString(_IDNum, ID_LENGTH, FixedLengthString.IS_FINAL);
+        this.name = new FixedLengthString(_name, NAME_LENGTH);
+        this.description = new FixedLengthString(_desc, DESCRIPTION_LENGTH);
         this.price = price;
     }
 
