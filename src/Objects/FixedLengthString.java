@@ -1,3 +1,5 @@
+package Objects;
+
 public class FixedLengthString {
     private String str;
     private int length;

@@ -1,3 +1,5 @@
+package FileTools;
+
 import javax.swing.*;
 import java.io.*;
 

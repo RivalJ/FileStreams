@@ -1,3 +1,5 @@
+package Objects;
+
 public class Product {
 
     private final FixedLengthString ID;
